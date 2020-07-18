@@ -1,1 +1,1 @@
-web: gunicorn awsar/awsar.wsgi
+web: gunicorn awsar.wsgi
