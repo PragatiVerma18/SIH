@@ -9,7 +9,7 @@ router = DefaultRouter()
 router.register('jobs', JobViewSet)
 
 urlpatterns = [
-    # path('search/', SearchApiView.as_view()),
+    path('search', SearchApiView.as_view()),
     path('apply-job/<int:job_id>', ApplyJobApiView.as_view()),
     path('jobs/', JobViewSet.as_view({'get': 'list'})),
     path('applicants/<int:job_id>', ApplicantPerJobView.as_view()),

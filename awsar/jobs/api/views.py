@@ -15,9 +15,9 @@ class SearchApiView(ListAPIView):
     serializer_class = JobSerializer
 
     def get_queryset(self):
-        if 'location' in self.request.GET and 'position' in self.request.GET:
+        if 'location' in self.request.GET and 'title' in self.request.GET:
             return self.serializer_class.Meta.model.objects.filter(location__contains=self.request.GET['location'],
-                                                                   title__contains=self.request.GET['position'])
+                                                                   title__contains=self.request.GET['title'])
         else:
             return self.serializer_class.Meta.model.objects.all()
 
