@@ -9,13 +9,13 @@ class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = ["id", "user", "title", "description", "location", "type", "category", "last_date",
-                  "company_name", "vacancies", "doc_url", "summary", "website", "created_at", "filled", "salary"]
+                  "company_name", "vacancies", "doc_url", "summary", "website", "filled", "salary"]
 
 
 class ApplicantSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-    job = JobSerializer(read_only=True)
+    # user = UserSerializer()
+    # job = JobSerializer()
 
     class Meta:
         model = Applicant
-        fields = "__all__"
+        fields = ["id", "user", "job"]

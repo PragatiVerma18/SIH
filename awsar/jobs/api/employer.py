@@ -13,7 +13,7 @@ class ApplicantPerJobView(generics.ListAPIView):
     model = Applicant
     serializer_class = ApplicantSerializer
 
-    @method_decorator(user_is_employer)
+    # @method_decorator(user_is_employer)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 

@@ -25,7 +25,7 @@ class SearchApiView(ListAPIView):
 class ApplyJobApiView(CreateAPIView):
     serializer_class = ApplicantSerializer
     http_method_names = [u'post']
-    permission_classes = [IsAuthenticated]
+    permission_classes = []
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
