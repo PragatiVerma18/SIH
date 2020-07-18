@@ -12,8 +12,6 @@ from .serializers import JobSerializer, ApplicantSerializer
 class ApplicantPerJobView(generics.ListAPIView):
     model = Applicant
     serializer_class = ApplicantSerializer
-    context_object_name = 'applicants'
-    paginate_by = 1
 
     @method_decorator(user_is_employer)
     def dispatch(self, request, *args, **kwargs):
@@ -30,4 +28,11 @@ class ApplicantPerJobView(generics.ListAPIView):
 
 class JobCreateView(generics.CreateAPIView):
     model = Job
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
+
+
+class JobRetrieveUpdateView(generics.RetrieveUpdateAPIView):
+    model = Job
+    queryset = Job.objects.all()
     serializer_class = JobSerializer
