@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         # fields = "__all__"
         exclude = ("first_name", "last_name", "password", "user_permissions", "groups",
-                   "is_staff", "is_superuser", "last_login")
+                   "is_staff", "is_active", "is_superuser", "last_login")
 
     def get_token(self, value):
         refresh = RefreshToken.for_user(value)
@@ -40,7 +40,6 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             'message',
             'role',
             'token',
-            'is_active'
         ]
         # exclude = ("password", "user_permissions", "groups",
         #            "is_staff", "is_active", "is_superuser", "last_login")
@@ -87,7 +86,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             role='Employer'
         )
         user_obj.set_password(validated_data.get('password'))
-        user_obj.is_active = False
+        user_obj.is_active = True
         user_obj.save()
         return user_obj
 
@@ -111,7 +110,6 @@ class EmployeeRegisterSerializer(serializers.ModelSerializer):
             'message',
             'role',
             'token',
-            'is_active'
         ]
         # exclude = ("password", "user_permissions", "groups",
         #            "is_staff", "is_active", "is_superuser", "last_login")
@@ -158,6 +156,6 @@ class EmployeeRegisterSerializer(serializers.ModelSerializer):
             role='Employee'
         )
         user_obj.set_password(validated_data.get('password'))
-        user_obj.is_active = False
+        user_obj.is_active = True
         user_obj.save()
         return user_obj

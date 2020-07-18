@@ -14,7 +14,7 @@ class TimestampedModel(models.Model):
 
 class EmployeeProfile(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE)
+        User, on_delete=models.CASCADE, to_field='username')
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     gender = models.CharField(max_length=50)
@@ -60,7 +60,7 @@ class Education(models.Model):
 
 class EmployerProfile(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE)
+        User, on_delete=models.CASCADE, to_field='username')
     company_name = models.CharField(max_length=200)
     location = models.CharField(max_length=100)
     website = models.URLField(null=True, blank=True)
