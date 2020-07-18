@@ -29,12 +29,11 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
         works_data = validated_data.pop('workexperience')
         education_data = validated_data.pop('education')
         emp = EmployeeProfile.objects.create(**validated_data)
-        user = EmployeeProfile.objects.create(**validated_data)
         for work_data in works_data:
             WorkExperience.objects.create(employee=emp, **work_data)
         for edu_data in education_data:
-            Education.objects.create(employee=user, **edu_data)
-        return employee
+            Education.objects.create(employee=emp, **edu_data)
+        return emp
 
     def update(self, instance, validated_data):
         works_data = validated_data.pop('workexperience')

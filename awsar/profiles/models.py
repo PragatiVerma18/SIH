@@ -13,8 +13,8 @@ class TimestampedModel(models.Model):
 
 
 class EmployeeProfile(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, to_field='id')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     gender = models.CharField(max_length=50)
@@ -59,7 +59,7 @@ class Education(models.Model):
 
 
 class EmployerProfile(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=200)
     location = models.CharField(max_length=100)

@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         # fields = "__all__"
         exclude = ("first_name", "last_name", "password", "user_permissions", "groups",
-                   "is_staff", "is_active", "is_superuser", "last_login")
+                   "is_staff", "is_superuser", "last_login")
 
     def get_token(self, value):
         refresh = RefreshToken.for_user(value)
@@ -40,6 +40,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             'message',
             'role',
             'token',
+            'is_active'
         ]
         # exclude = ("password", "user_permissions", "groups",
         #            "is_staff", "is_active", "is_superuser", "last_login")
@@ -110,6 +111,7 @@ class EmployeeRegisterSerializer(serializers.ModelSerializer):
             'message',
             'role',
             'token',
+            'is_active'
         ]
         # exclude = ("password", "user_permissions", "groups",
         #            "is_staff", "is_active", "is_superuser", "last_login")
