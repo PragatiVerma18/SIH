@@ -75,7 +75,7 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
             degree.degree = edu.get('degree', degree.degree)
             degree.start_date = edu.get('start_date', degree.start_date)
             degree.end_date = edu.get('end_date', degree.end_date)
-            work.save()
+            degree.save()
         return instance
 
 
