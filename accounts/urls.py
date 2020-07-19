@@ -9,15 +9,17 @@ from .api.views import(
     EmployeeRegisterAPIView,
     EmployeeList,
     UserDetail,
-    EmployerList
+    EmployerList,
+    login
 )
 
 urlpatterns = [
-    path('employerregister', EmployerRegisterAPIView.as_view()),
-    path('employeeregister', EmployeeRegisterAPIView.as_view()),
-    path('login/', MyTokenObtainPairView.as_view()),
+    path('employerregister/', EmployerRegisterAPIView.as_view()),
+    path('employeeregister/', EmployeeRegisterAPIView.as_view()),
+    path('token/obtain/', MyTokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
     path('employees/', EmployeeList.as_view()),
     path('employers/', EmployerList.as_view()),
     path('users/<int:pk>/', UserDetail.as_view()),
+    path('login/', login)
 ]
