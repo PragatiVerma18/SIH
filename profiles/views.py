@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from .serializers import EmployeeProfileSerializer, EmployerProfileSerializer
 from .models import EmployeeProfile, WorkExperience, Education, EmployerProfile
+from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
 
 
 class EmployeeProfileCreateView(generics.CreateAPIView):
@@ -34,7 +36,11 @@ class EmployerProfileCreateView(generics.CreateAPIView):
 class EmployerProfileListView(generics.RetrieveUpdateAPIView):
     model = EmployerProfile
     serializer_class = EmployerProfileSerializer
+    queryset = EmployerProfile.objects.all()
+    lookup_field = 'user'
 
-    def get_queryset(self):
-        user = self.request.user
-        return EmployerProfile.objects.all()
+    def retrieve(self, request, user):
+        queryset = EmployerProfile.objects.filter(user=user)
+        profile = get_object_or_404(queryset, user=user)
+        serializer = EmployerProfileSerializer(profile)
+        return Response(serializer.data)

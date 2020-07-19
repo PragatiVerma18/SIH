@@ -6,5 +6,5 @@ urlpatterns = (
     path('create-employee-profile/', EmployeeProfileCreateView.as_view()),
     path('employeeprofile/<int:pk>/', EmployeeProfileListView.as_view()),
     path('create-employer-profile/', EmployerProfileCreateView.as_view()),
-    path('employerprofile/<int:pk>/', EmployerProfileListView.as_view()),
+    path('employerprofile/<user>/', EmployerProfileListView.as_view()),
 )
