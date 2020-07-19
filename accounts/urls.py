@@ -20,6 +20,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view()),
     path('employees/', EmployeeList.as_view()),
     path('employers/', EmployerList.as_view()),
-    path('users/<int:pk>/', UserDetail.as_view()),
+    path('users/<username>', UserDetail.as_view()),
     path('login/', login)
 ]

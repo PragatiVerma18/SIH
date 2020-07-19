@@ -63,6 +63,12 @@ class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    def retrieve(self, request,username):
+        queryset = User.objects.filter(username=username)
+        user = get_object_or_404(queryset, username=username)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
 
 @api_view(["POST"])
 def login(request):
