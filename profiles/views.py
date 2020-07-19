@@ -18,14 +18,23 @@ class EmployeeProfileCreateView(generics.CreateAPIView):
 
 
 class EmployeeProfileListView(generics.RetrieveUpdateAPIView):
+    model = EmployeeProfile
     serializer_class = EmployeeProfileSerializer
+    queryset = EmployeeProfile.objects.all()
+    lookup_field = 'user'
 
-    def get_serializer_context(self, *args, **kwargs):
-        return {'request': self.request}
+    def retrieve(self, request, user):
+        queryset = EmployeeProfile.objects.filter(user=user)
+        profile = get_object_or_404(queryset, user=user)
+        serializer = EmployeeProfileSerializer(profile)
+        return Response(serializer.data)
 
-    def get_queryset(self):
-        user = self.request.user
-        return EmployeeProfile.objects.all()
+    # def get_serializer_context(self, *args, **kwargs):
+    #     return {'request': self.request}
+
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return EmployeeProfile.objects.all()
 
 
 class EmployerProfileCreateView(generics.CreateAPIView):
