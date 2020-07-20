@@ -22,6 +22,10 @@ class EmployeeProfile(models.Model):
     industry = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     skills = models.CharField(max_length=500)
+    portfolio = models.URLField(blank=True)
+    github = models.URLField(blank=True)
+    linkedin = models.URLField(blank=True)
+    twitter = models.URLField(blank=True)
 
     def __str__(self):
         return self.user.username
@@ -68,6 +72,8 @@ class EmployerProfile(models.Model):
     company_size = models.IntegerField()
     company_type = models.CharField(max_length=50)
     overview = models.TextField(max_length=500)
+    linkedin = models.URLField(blank=True)
+    twitter = models.URLField(blank=True)
 
     def __str__(self):
         return '%s' % (self.company_name)
