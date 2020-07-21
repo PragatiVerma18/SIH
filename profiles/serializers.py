@@ -23,7 +23,7 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmployeeProfile
         fields = ['id', 'user', 'first_name', 'last_name', 'gender',
-                  'title', 'industry', 'location', 'skills', 'portfolio', 'github', 'linkedin', 'twitter', 'workexperience', 'education']
+                  'title', 'industry', 'location', 'skills', 'portfolio', 'github', 'linkedin', 'twitter', 'image', 'workexperience', 'education']
 
     def create(self, validated_data):
         works_data = validated_data.pop('workexperience')
@@ -63,6 +63,7 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
         instance.github = validated_data.get('github', instance.github)
         instance.linkedin = validated_data.get('linkedin', instance.linkedin)
         instance.twitter = validated_data.get('twitter', instance.twitter)
+        instance.image = validated_data.get('image', instance.image)
         instance.save()
 
         for work_data in works_data:
@@ -88,4 +89,4 @@ class EmployerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmployerProfile
         fields = ['id', 'user', 'company_name', 'location', 'website',
-                  'industry', 'company_size', 'company_type', 'linkedin', 'twitter', 'overview']
+                  'industry', 'company_size', 'company_type', 'linkedin', 'twitter', 'overview', 'image']
