@@ -22,7 +22,7 @@ class EmployeeProfile(models.Model):
     about = models.TextField(blank=True)
     phone_number = PhoneNumberField(blank=True)
     dob = models.DateField(null=True)
-    age = models.PositiveIntegerField(default=18)
+    # age = models.PositiveIntegerField(default=18)
     title = models.CharField(max_length=100)
     industry = models.CharField(max_length=100)
     location = models.CharField(max_length=100)

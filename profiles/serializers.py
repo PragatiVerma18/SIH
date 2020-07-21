@@ -22,7 +22,7 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = EmployeeProfile
-        fields = ['id', 'user', 'first_name', 'last_name', 'gender', 'about', 'phone_number',
+        fields = ['id', 'user', 'first_name', 'last_name', 'gender', 'about', 'phone_number', 'dob',
                   'title', 'industry', 'location', 'skills', 'portfolio', 'github', 'linkedin', 'twitter', 'image', 'workexperience', 'education']
 
     def create(self, validated_data):
@@ -51,6 +51,7 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
         instance.gender = validated_data.get(
             'gender', instance.gender)
         instance.about = validated_data.get('about', instance.about)
+        instance.dob = validated_data.get('dob', instance.dob)
         instance.phone_number = validated_data.get(
             'phone_number', instance.phone_number)
         instance.title = validated_data.get(
