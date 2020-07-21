@@ -2,6 +2,7 @@ from django.db import models
 from accounts.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class TimestampedModel(models.Model):
@@ -18,6 +19,10 @@ class EmployeeProfile(models.Model):
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     gender = models.CharField(max_length=50)
+    about = models.TextField(blank=True)
+    phone_number = PhoneNumberField(blank=True)
+    dob = models.DateField(null=True)
+    age = models.PositiveIntegerField(default=18)
     title = models.CharField(max_length=100)
     industry = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
