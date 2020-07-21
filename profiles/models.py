@@ -26,6 +26,8 @@ class EmployeeProfile(models.Model):
     github = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
+    image = models.URLField(
+        default='https://www.pngkey.com/png/full/305-3050875_employee-parking-add-employee-icon-png.png')
 
     def __str__(self):
         return self.user.username
@@ -74,6 +76,8 @@ class EmployerProfile(models.Model):
     overview = models.TextField(max_length=500)
     linkedin = models.URLField(blank=True)
     twitter = models.URLField(blank=True)
+    image = models.URLField(
+        default='https://cdn0.iconfinder.com/data/icons/building-vol-9/512/12-512.png')
 
     def __str__(self):
         return '%s' % (self.company_name)
