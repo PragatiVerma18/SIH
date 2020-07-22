@@ -1,8 +1,13 @@
+import re
 from django.db import models
 from accounts.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import RegexValidator
+
+validate_pan = RegexValidator(
+    r'[A-Z]{5}[0-9]{4}[A-Z]{1}', 'Enter a Valid PAN Number')
 
 
 class TimestampedModel(models.Model):
@@ -19,14 +24,14 @@ class EmployeeProfile(models.Model):
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     gender = models.CharField(max_length=50)
-    about = models.TextField(blank=True)
+    about = models.TextField(max_length=500)
     phone_number = PhoneNumberField(blank=True)
     email = models.EmailField()
     dob = models.DateField(null=True)
     title = models.CharField(max_length=100)
     industry = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    skills = models.CharField(max_length=500)
+    skills = models.TextField()
     portfolio = models.URLField(blank=True)
     github = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
@@ -74,11 +79,14 @@ class EmployerProfile(models.Model):
         User, on_delete=models.CASCADE, to_field='username')
     email = models.EmailField()
     company_name = models.CharField(max_length=200)
+    full_form = models.CharField(max_length=500, blank=True)
     location = models.CharField(max_length=100)
     website = models.URLField(null=True, blank=True)
     industry = models.CharField(max_length=50)
     company_size = models.IntegerField()
     company_type = models.CharField(max_length=50)
+    pan = models.CharField(max_length=10, validators=[
+                           validate_pan], blank=True)
     overview = models.TextField(max_length=500)
     linkedin = models.URLField(blank=True)
     twitter = models.URLField(blank=True)

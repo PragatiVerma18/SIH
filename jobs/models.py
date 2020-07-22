@@ -27,6 +27,7 @@ class Job(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     filled = models.BooleanField(default=False)
     salary = models.IntegerField(default=0, blank=True)
+    tags = models.TextField(default='')
 
     def __str__(self):
         return self.title
