@@ -17,12 +17,12 @@ class EducationSerializer(serializers.ModelSerializer):
 
 
 class EmployeeProfileSerializer(serializers.ModelSerializer):
-    workexperience = WorkExperienceSerializer(many=True, required=True)
+    workexperience = WorkExperienceSerializer(many=True)
     education = EducationSerializer(many=True, required=True)
 
     class Meta:
         model = EmployeeProfile
-        fields = ['id', 'user', 'first_name', 'last_name', 'gender', 'about', 'phone_number', 'dob',
+        fields = ['id', 'user', 'first_name', 'last_name', 'gender', 'about', 'phone_number', 'email', 'dob',
                   'title', 'industry', 'location', 'skills', 'portfolio', 'github', 'linkedin', 'twitter', 'image', 'workexperience', 'education']
 
     def create(self, validated_data):
@@ -54,6 +54,7 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
         instance.dob = validated_data.get('dob', instance.dob)
         instance.phone_number = validated_data.get(
             'phone_number', instance.phone_number)
+        instance.email = validated_data.get('email', instance.email)
         instance.title = validated_data.get(
             'title', instance.title)
         instance.industry = validated_data.get(
@@ -92,5 +93,5 @@ class EmployeeProfileSerializer(serializers.ModelSerializer):
 class EmployerProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmployerProfile
-        fields = ['id', 'user', 'company_name', 'location', 'website',
+        fields = ['id', 'user', 'email', 'company_name', 'location', 'website',
                   'industry', 'company_size', 'company_type', 'linkedin', 'twitter', 'overview', 'image']
