@@ -21,9 +21,8 @@ class EmployeeProfile(models.Model):
     gender = models.CharField(max_length=50)
     about = models.TextField(blank=True)
     phone_number = PhoneNumberField(blank=True)
-    email = models.EmailField(blank=True)
+    email = models.EmailField()
     dob = models.DateField(null=True)
-    # age = models.PositiveIntegerField(default=18)
     title = models.CharField(max_length=100)
     industry = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
@@ -73,7 +72,7 @@ class Education(models.Model):
 class EmployerProfile(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, to_field='username')
-    email = models.EmailField(blank=True)
+    email = models.EmailField()
     company_name = models.CharField(max_length=200)
     location = models.CharField(max_length=100)
     website = models.URLField(null=True, blank=True)
