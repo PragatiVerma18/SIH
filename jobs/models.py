@@ -37,7 +37,7 @@ class Job(models.Model):
 
 
 class Applicant(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, to_field='username')
     job = models.ForeignKey(Job, on_delete=models.CASCADE,
                             related_name='applicants')
