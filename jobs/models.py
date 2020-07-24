@@ -15,7 +15,7 @@ class Job(models.Model):
     company_name = models.CharField(max_length=100)
     vacancies = models.IntegerField(default=1)
     doc_url = models.URLField(blank=True)
-    summary = models.CharField(max_length=500, blank=True)
+    summary = models.TextField(blank=True)
     qualification = models.TextField(blank=True)
     experience = models.PositiveIntegerField(default=0)
     age_limit = models.CharField(max_length=500, default='age >18')
