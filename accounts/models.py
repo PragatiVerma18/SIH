@@ -17,6 +17,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=12, error_messages={
         'required': "Role must be provided"
     })
+    verified = models.BooleanField(default=False)
     email = models.EmailField(unique=True, blank=False,
                               error_messages={
                                   'unique': "A user with that email already exists.",

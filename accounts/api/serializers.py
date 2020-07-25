@@ -29,6 +29,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
     message = serializers.SerializerMethodField(read_only=True)
     role = serializers.SerializerMethodField(read_only=True)
     token = serializers.SerializerMethodField(read_only=True)
+    verified = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User
@@ -39,6 +40,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             'password2',
             'message',
             'role',
+            'verified',
             'token',
         ]
         # exclude = ("password", "user_permissions", "groups",
@@ -83,7 +85,8 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
         user_obj = User.objects.create(
             username=validated_data.get('username'),
             email=validated_data.get('email'),
-            role='Employer'
+            role='Employer',
+            verified=False
         )
         user_obj.set_password(validated_data.get('password'))
         user_obj.is_active = True
@@ -99,6 +102,7 @@ class EmployeeRegisterSerializer(serializers.ModelSerializer):
     message = serializers.SerializerMethodField(read_only=True)
     role = serializers.SerializerMethodField(read_only=True)
     token = serializers.SerializerMethodField(read_only=True)
+    verified = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User
@@ -109,6 +113,7 @@ class EmployeeRegisterSerializer(serializers.ModelSerializer):
             'password2',
             'message',
             'role',
+            'verified',
             'token',
         ]
         # exclude = ("password", "user_permissions", "groups",
@@ -153,7 +158,8 @@ class EmployeeRegisterSerializer(serializers.ModelSerializer):
         user_obj = User.objects.create(
             username=validated_data.get('username'),
             email=validated_data.get('email'),
-            role='Employee'
+            role='Employee',
+            verified=False
         )
         user_obj.set_password(validated_data.get('password'))
         user_obj.is_active = True

@@ -20,10 +20,13 @@ class Job(models.Model):
     experience = models.PositiveIntegerField(default=0)
     age_limit = models.CharField(max_length=500, default='age >18')
     website = models.CharField(max_length=100, blank=True)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
     filled = models.BooleanField(default=False)
     salary = models.IntegerField(default=0, blank=True)
     tags = models.TextField(default='')
+    job_for_women = models.BooleanField(default=False, null=True)
+    job_for_disabled = models.BooleanField(default=False, null=True)
 
     def __str__(self):
         return self.title
