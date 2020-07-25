@@ -8,7 +8,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView
 
 class JobViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = JobSerializer
-    queryset = serializer_class.Meta.model.objects.all()
+    queryset = serializer_class.Meta.model.objects.all().order_by('-created_at')
 
 
 class SearchApiView(ListAPIView):
@@ -19,7 +19,7 @@ class SearchApiView(ListAPIView):
             return self.serializer_class.Meta.model.objects.filter(location__contains=self.request.GET['location'],
                                                                    title__contains=self.request.GET['title'])
         else:
-            return self.serializer_class.Meta.model.objects.all()
+            return self.serializer_class.Meta.model.objects.all().order_by('-created_at')
 
 
 class ApplyJobApiView(CreateAPIView):
