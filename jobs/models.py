@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from accounts.models import User
+from profiles.models import EmployeeProfile
 
 
 class Job(models.Model):
@@ -35,6 +36,8 @@ class Job(models.Model):
 class Applicant(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, to_field='username')
+    employee = models.OneToOneField(
+        EmployeeProfile, on_delete=models.CASCADE, to_field='user')
     job = models.ForeignKey(Job, on_delete=models.CASCADE,
                             related_name='applicants')
     applied_at = models.DateTimeField(default=timezone.now)

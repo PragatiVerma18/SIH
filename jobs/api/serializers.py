@@ -18,4 +18,15 @@ class ApplicantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Applicant
-        fields = ["id", "user", "job"]
+        fields = ["id", "user", "employee", "job"]
+        # depth = 1
+
+
+class ApplicantDetailSerializer(serializers.ModelSerializer):
+    # user = UserSerializer()
+    # job = JobSerializer()
+
+    class Meta:
+        model = Applicant
+        fields = ["id", "employee"]
+        depth = 1

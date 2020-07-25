@@ -6,12 +6,12 @@ from django.utils.decorators import method_decorator
 from rest_framework import generics
 from ..decorators import user_is_employer
 from ..models import Job, Applicant
-from .serializers import JobSerializer, ApplicantSerializer
+from .serializers import JobSerializer, ApplicantSerializer, ApplicantDetailSerializer
 
 
 class ApplicantPerJobView(generics.ListAPIView):
     model = Applicant
-    serializer_class = ApplicantSerializer
+    serializer_class = ApplicantDetailSerializer
 
     # @method_decorator(user_is_employer)
     def dispatch(self, request, *args, **kwargs):
