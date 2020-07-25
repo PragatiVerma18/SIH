@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from .views import JobViewSet, SearchApiView, ApplyJobApiView
-from .employer import ApplicantPerJobView, JobCreateView, JobRetrieveUpdateView
+from .employer import ApplicantPerJobView, JobCreateView, JobRetrieveUpdateView, JobFilterByEmployerView
 
 from .views import *
 
@@ -14,7 +14,8 @@ urlpatterns = [
     path('jobs/', JobViewSet.as_view({'get': 'list'})),
     path('applicants/<int:job_id>', ApplicantPerJobView.as_view()),
     path('create-job/', JobCreateView.as_view()),
-    path('update/<int:pk>/', JobRetrieveUpdateView.as_view())
+    path('update/<int:pk>/', JobRetrieveUpdateView.as_view()),
+    path('employer/<user>', JobFilterByEmployerView.as_view())
 ]
 
 urlpatterns += router.urls

@@ -36,3 +36,13 @@ class JobRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     model = Job
     queryset = Job.objects.all()
     serializer_class = JobSerializer
+
+
+class JobFilterByEmployerView(generics.ListAPIView):
+    model = Job
+    serializer_class = JobSerializer
+    lookup_field = 'user'
+
+    def get_queryset(self):
+        username = self.kwargs['user']
+        return Job.objects.filter(user=username)

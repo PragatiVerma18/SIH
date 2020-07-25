@@ -53,6 +53,9 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
     def get_role(self, obj):
         return 'Employer'
 
+    def get_verified(self, obj):
+        return False
+
     def get_token(self, value):
         refresh = RefreshToken.for_user(value)
         return {
