@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from profiles.serializers import EmployeeProfileSerializer
 from accounts.api.serializers import UserSerializer
 from ..models import *
 
@@ -18,7 +18,8 @@ class ApplicantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Applicant
-        fields = ["id", "user", "employee", "job"]
+        fields = ["id", "employee", "job", "applied_at", "status"]
+
         # depth = 1
 
 
@@ -28,5 +29,5 @@ class ApplicantDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Applicant
-        fields = ["id", "employee"]
+        fields = ["id", "employee", "applied_at", "status"]
         depth = 1

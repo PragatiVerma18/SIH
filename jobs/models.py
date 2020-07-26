@@ -34,10 +34,8 @@ class Job(models.Model):
 
 
 class Applicant(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, to_field='username')
-    employee = models.OneToOneField(
-        EmployeeProfile, on_delete=models.CASCADE, to_field='user')
+    employee = models.ForeignKey(
+        EmployeeProfile, on_delete=models.CASCADE, to_field='user', related_name='applicants')
     job = models.ForeignKey(Job, on_delete=models.CASCADE,
                             related_name='applicants')
     applied_at = models.DateTimeField(default=timezone.now)

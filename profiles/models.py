@@ -24,6 +24,7 @@ class EmployeeProfile(models.Model):
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     gender = models.CharField(max_length=50)
+    disabled = models.BooleanField(null=True, default=False)
     about = models.TextField(max_length=500)
     phone_number = PhoneNumberField(blank=True)
     email = models.EmailField()
