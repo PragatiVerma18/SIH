@@ -56,3 +56,9 @@ class JobAppliedByEmployeeView(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['user']
         return Applicant.objects.filter(employee=username)
+
+
+class StatusUpdateAPIView(generics.RetrieveUpdateAPIView):
+    model = Applicant
+    serializer_class = ApplicantDetailSerializer
+    queryset = Applicant.objects.all()
