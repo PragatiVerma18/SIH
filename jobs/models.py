@@ -42,4 +42,4 @@ class Applicant(models.Model):
     status = models.CharField(max_length=15, default='Applied')
 
     def __str__(self):
-        return self.user.get_full_name()
+        return self.employee.first_name
