@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from rest_framework import generics
 from ..decorators import user_is_employer
 from ..models import Job, Applicant
-from .serializers import JobSerializer, ApplicantSerializer, ApplicantDetailSerializer
+from .serializers import JobSerializer, ApplicantSerializer, ApplicantDetailSerializer, JobAppliedByEmployeeSerializer
 
 
 class ApplicantPerJobView(generics.ListAPIView):
@@ -46,3 +46,13 @@ class JobFilterByEmployerView(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['user']
         return Job.objects.filter(user=username)
+
+
+class JobAppliedByEmployeeView(generics.ListAPIView):
+    model = Applicant
+    serializer_class = JobAppliedByEmployeeSerializer
+    lookup_field = 'user'
+
+    def get_queryset(self):
+        username = self.kwargs['user']
+        return Applicant.objects.filter(employee=username)

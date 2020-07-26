@@ -31,3 +31,12 @@ class ApplicantDetailSerializer(serializers.ModelSerializer):
         model = Applicant
         fields = ["id", "employee", "applied_at", "status"]
         depth = 1
+
+
+class JobAppliedByEmployeeSerializer(serializers.ModelSerializer):
+    # job_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Applicant
+        fields = ["id", "job", "applied_at", "status"]
+        depth = 1
