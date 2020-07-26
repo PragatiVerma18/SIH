@@ -1,6 +1,7 @@
 from rest_framework import viewsets, mixins, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from django.utils.timezone import now
 
 from .serializers import *
 from rest_framework.generics import ListAPIView, CreateAPIView
@@ -8,7 +9,8 @@ from rest_framework.generics import ListAPIView, CreateAPIView
 
 class JobViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = JobSerializer
-    queryset = serializer_class.Meta.model.objects.all().order_by('-created_at')
+    queryset = serializer_class.Meta.model.objects.filter(
+        last_date__gte=now()).order_by('-created_at')
 
 
 class SearchApiView(ListAPIView):
