@@ -40,7 +40,7 @@ class ApplicantDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Applicant
-        fields = ["id", "employee", "applied_at", "status"]
+        fields = ["id", "employee", "job", "applied_at", "status"]
         depth = 1
         read_only_fields = ('id', 'applied_at')
 
