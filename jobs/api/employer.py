@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from rest_framework import generics
 from ..decorators import user_is_employer
 from ..models import Job, Applicant
-from .serializers import JobSerializer, ApplicantSerializer, ApplicantDetailSerializer, JobAppliedByEmployeeSerializer, JobDetailSerializer
+from .serializers import JobSerializer, ApplicantSerializer, ApplicantDetailSerializer, JobAppliedByEmployeeSerializer, JobDetailSerializer, StatusUpdateSerializer
 
 
 class ApplicantPerJobView(generics.ListAPIView):
@@ -60,5 +60,5 @@ class JobAppliedByEmployeeView(generics.ListAPIView):
 
 class StatusUpdateAPIView(generics.RetrieveUpdateAPIView):
     model = Applicant
-    serializer_class = ApplicantDetailSerializer
+    serializer_class = StatusUpdateSerializer
     queryset = Applicant.objects.all()

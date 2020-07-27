@@ -23,6 +23,12 @@ class JobDetailSerializer(serializers.ModelSerializer):
                   "company_name", "vacancies", "doc_url", "summary", 'qualification', 'experience', 'age_limit', "website", "filled", "salary", "tags", "job_for_women", "job_for_disabled", "created_at", "updated_at"]
 
 
+class JobShortSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = ["id", "title", "company_name"]
+
+
 class ApplicantSerializer(serializers.ModelSerializer):
     # user = UserSerializer()
     # job = JobSerializer()
@@ -37,12 +43,24 @@ class ApplicantSerializer(serializers.ModelSerializer):
 class ApplicantDetailSerializer(serializers.ModelSerializer):
     # user = UserSerializer()
     # job = JobSerializer()
+    job = JobShortSerializer()
 
     class Meta:
         model = Applicant
-        fields = ["id", "employee", "job", "applied_at", "status"]
+        fields = ["id", "employee", "applied_at", "status",  "job"]
         depth = 1
-        read_only_fields = ('id', 'applied_at')
+        read_only_fields = ('id', 'applied_at', 'job')
+
+
+class StatusUpdateSerializer(serializers.ModelSerializer):
+    # user = UserSerializer()
+    # job = JobSerializer()
+
+    class Meta:
+        model = Applicant
+        fields = ["id", "employee", "applied_at", "status"]
+        depth = 1
+        read_only_fields = ('id', 'applied_at', 'job')
 
 
 class JobAppliedByEmployeeSerializer(serializers.ModelSerializer):
