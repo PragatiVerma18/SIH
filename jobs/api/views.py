@@ -8,7 +8,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView
 
 
 class JobViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = JobSerializer
+    serializer_class = JobDetailSerializer
     queryset = serializer_class.Meta.model.objects.filter(
         last_date__gte=now()).order_by('-created_at')
 

@@ -21,6 +21,13 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
+class UserAPISerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ["username", "verified", "email"]
+
+
 class EmployerRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         style={'input_type': 'password'}, write_only=True)

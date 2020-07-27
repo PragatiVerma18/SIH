@@ -1,11 +1,21 @@
 from rest_framework import serializers
 from profiles.serializers import EmployeeProfileSerializer
-from accounts.api.serializers import UserSerializer
+from accounts.api.serializers import UserSerializer, UserAPISerializer
 from ..models import *
 
 
 class JobSerializer(serializers.ModelSerializer):
     last_date = serializers.DateTimeField(format="%Y-%m-%dT%H:%M:%S")
+
+    class Meta:
+        model = Job
+        fields = ["id", "user", "title", "description", "location", "type", "category", "last_date",
+                  "company_name", "vacancies", "doc_url", "summary", 'qualification', 'experience', 'age_limit', "website", "filled", "salary", "tags", "job_for_women", "job_for_disabled", "created_at", "updated_at"]
+
+
+class JobDetailSerializer(serializers.ModelSerializer):
+    last_date = serializers.DateTimeField(format="%Y-%m-%dT%H:%M:%S")
+    user = UserAPISerializer()
 
     class Meta:
         model = Job
