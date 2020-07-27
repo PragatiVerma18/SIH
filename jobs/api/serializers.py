@@ -5,6 +5,7 @@ from ..models import *
 
 
 class JobSerializer(serializers.ModelSerializer):
+    last_date = serializers.DateTimeField(format="%Y-%m-%dT%H:%M:%S")
 
     class Meta:
         model = Job
