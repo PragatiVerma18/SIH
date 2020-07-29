@@ -32,7 +32,7 @@ class JobCreateView(generics.CreateAPIView):
     serializer_class = JobSerializer
 
 
-class JobRetrieveUpdateView(generics.RetrieveUpdateAPIView):
+class JobRetrieveUpdateView(generics.RetrieveUpdateDestroyAPIView):
     model = Job
     queryset = Job.objects.all()
     serializer_class = JobSerializer
