@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import stats
+from .views import ApplicantStats, TimeStats
 
 urlpatterns = [
-    path('stats', stats),
+    path('duration', TimeStats),
+    path('applicants', ApplicantStats)
 ]
